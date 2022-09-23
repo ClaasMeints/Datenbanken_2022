@@ -1,0 +1,73 @@
+\chapter{Stand der Technik}\label{ch:Stand der Technik}
+\section{Komponenten einer IoT-Lösung}\label{sec:Komponenten einer IoT-Lösung}
+% [Guth2018] [10.1007/978-3-030-24311-1_8]\\
+\subsection{Geräte}\label{subsec:Geräte}
+- Sensoren und Aktoren\\
+- Treiber für Sensoren und Aktoren\\
+- Geräte SDKs\\
+- RTOS\\
+- Edge Computing\\
+\subsection{Gateway}\label{subsec:Gateway}
+- Software und Schnittstellen für Gerätekommunikation\\
+- Gateway SDKs\\
+- OS\\
+- Schnittstellen zu Cloud-Plattformen (MQTT, REST, etc.)\\
+- Fog Computing\\
+\subsection{IoT-Software-Plattform}\label{subsec:IoT-Software-Plattform}
+- Verwaltet Geräte und Gateways\\
+- Stellt Schnittstellen für externe Applikationen und Services bereit\\
+- bietet Services für die Verarbeitung von Daten\\
+- wird in dieser Arbeit als IoT-Plattform bezeichnet\\
+\subsection{Anwendung}\label{subsec:Anwendung}
+- Anwendungen / Applikationen / Services auf Basis der IoT-Plattform und der Daten der Geräte\\
+\section{Referenzarchitektur von IoT-Software-Plattformen}\label{sec:Referenzarchitektur von IoT-Software-Plattformen}
+\subsection{Kommunikation}\label{subsec:Kommunikation}
+- MQTT Broker\\
+- (MQTT-)WebSockets\\
+- HTTP (REST)\\
+\subsection{Digitaler Zwilling}\label{subsec:Digitaler Zwilling}
+- Device Registry / Twin\\
+- Device Metadata and Data\\
+- Remote Actions\\
+- Device Updates\\
+\subsection{IoT-Services}\label{subsec:IoT-Services}
+% [Lempert2021] [Microsoft_2021] [9825678]\\
+- Develop Insights (Cold, Warm and Hot Path)\\
+- Databases (Structured, Unstructured and Time Series)\\
+- Descriptive Analytics\\
+- Diagnostic Analytics\\
+- Real-Time Analytics (Stream Processing Hot Path)\\
+- Predictive / Prescriptive Analytics (Machine Learning Cold Path)\\
+\subsection{Integration in Drittsysteme}\label{subsec:Integration in Drittsysteme}
+- Adapter zu Enterprise-Systemen\\
+- Cloud to Cloud Integration\\
+- Apis?\\
+\subsection{Orchestrierung von Services}\label{subsec:Orchestrierung von Services}
+- Message Broker / Event Bus\\
+- Rules Engine\\
+- Service-Orchestrierung\\
+- Load Balancing?\\
+\subsection{Management}\label{subsec:Management}
+- Device Management -> Device Twin\\
+- Configuration / State Management -> Device Twin\\
+- Errors and Reports\\
+\subsection{Security}\label{subsec:Security}
+- Authentication / Authorization\\
+- Identity Management\\
+\section{Aktuelle Implementierungen von IoT-Software-Plattformen}\label{sec:Aktuelle Implementierungen von IoT-Software-Plattformen}
+\subsection{Hyperscaler-Cloud-Anbieter}\label{subsec:Hyperscaler-Cloud-Anbieter}
+- Bindung an den Cloud-Anbieter?\\
+- Regional verteilbar -> geringere Latenz?\\
+\subsection{(Open-Source IoT-Plattformen)}\label{subsec:(Open-Source IoT-Plattformen)}
+- Cloud agnostisch?\\
+- On-Premise möglich?\\
+\subsection{(IoT-Spezifische Plattformen)}\label{subsec:(IoT-Spezifische Plattformen)}
+% ^ möglicherweise zusammenfassen ^\\
+\subsection{Low-Code-Plattformen}\label{subsec:Low-Code-Plattformen}
+- schnellere Entwicklung von IoT-Lösungen?\\
+- höhere Flexibilität?\\
+- hohe Abhängigkeit von der Plattform?\\
+- hohe Kosten?\\
+\section{IoT Geschäftsmodellentwicklung}\label{sec:IoT Geschäftsmodellentwicklung}
+\subsection{Prototypentwicklung}\label{subsec:Prototypentwicklung}
+\subsection{Skalierung}\label{subsec:Skalierung}

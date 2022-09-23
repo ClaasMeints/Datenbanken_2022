@@ -1,0 +1,46 @@
+\documentclass[
+	12pt,						 % Schriftgröße
+	DIV=10,						 % Satzspiegelgröße Seitenränder
+	german,						 % für Umlaute, Silbentrennung etc.
+	paper=a4,					 % Papierformat
+	oneside, 
+	titlepage,					 % es wird eine Titelseite verwendet
+	parskip=half,				 % Abstand zwischen Absätzen (halbe Zeile)
+	headings=normal,			 % Größe der Überschriften verkleinern
+	listof=totoc,				 % Verzeichnisse im Inhaltsverzeichnis aufführen
+	bibliography=totoc,			 % Literaturverzeichnis im Inhaltsverzeichnis aufführen
+	numbers=noenddot,			 % Kapitelnummern ohne Punkt	
+	enabledeprecatedfontcommands % Alte Befehle zur unterstüzung von \listofsymbols	
+]{scrreprt}
+
+\makeatletter	
+	\setlength\@fptop{0\p@}  % Entfernt Lücken am Seitenbeginn
+\makeatother
+
+\input{style/_meta.tex}
+\input{style/packages.tex}
+\input{style/pagestyle.tex}
+
+\newglossary[llg]{glossary}{llo}{lls}{Glossar}
+\makeglossaries
+
+\begin{document}
+	\input{style/titlepage.tex}
+	
+	\pagenumbering{Roman}
+	\setcounter{tocdepth}{2} % Tiefe des Inhaltsverzeichnisses definiert
+	\tableofcontents
+
+    \input{chapters/1 Einleitung.tex}
+    \input{chapters/2 Stand der Technik.tex}
+    \input{chapters/3 Theoretische Grundlagen.tex}
+    \input{chapters/4 Anforderungsdefiniton (An die Arbeit).tex}
+    \input{chapters/5 Systemanalyse (Grundlage für Kriterien).tex}
+    \input{chapters/6 Konzeption (Kriterien für Prototy und Skalierte Lösung).tex}
+    \input{chapters/7 Implementierung (Abgleich der Kriterien).tex}
+    \input{chapters/8 Umsetzung eines exemplarischen IoT-Geschäftsmodells.tex}
+    \input{chapters/9 Ergebnis und Diskussion.tex}
+    \input{chapters/10 Zusammenfassung.tex}
+    \input{chapters/11 Ausblick.tex}
+ 
+\end{document} 
