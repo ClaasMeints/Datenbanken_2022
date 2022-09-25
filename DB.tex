@@ -21,26 +21,20 @@
 \input{style/packages.tex}
 \input{style/pagestyle.tex}
 
-\newglossary[llg]{glossary}{llo}{lls}{Glossar}
+\input{sources/acronyms.tex}
+\input{sources/glossary.tex}
 \makeglossaries
 
 \begin{document}
-	\input{style/titlepage.tex}
+    \pagenumbering{Roman}
+    \input{style/titlepage.tex}
 	
-	\pagenumbering{Roman}
-	\setcounter{tocdepth}{2} % Tiefe des Inhaltsverzeichnisses definiert
-	\tableofcontents
+    \input{chapters/1 Beschreibung der Anforderungen.tex}
+    \input{chapters/2 Modellierung der Datenbank.tex}
+    \input{chapters/3 Entwicklung des Backends.tex}
+    \input{chapters/4 Entwicklung und Simulation des Frontends.tex}
+    \input{chapters/5 Ergebnisse.tex}
 
-    \input{chapters/1 Einleitung.tex}
-    \input{chapters/2 Stand der Technik.tex}
-    \input{chapters/3 Theoretische Grundlagen.tex}
-    \input{chapters/4 Anforderungsdefiniton (An die Arbeit).tex}
-    \input{chapters/5 Systemanalyse (Grundlage für Kriterien).tex}
-    \input{chapters/6 Konzeption (Kriterien für Prototy und Skalierte Lösung).tex}
-    \input{chapters/7 Implementierung (Abgleich der Kriterien).tex}
-    \input{chapters/8 Umsetzung eines exemplarischen IoT-Geschäftsmodells.tex}
-    \input{chapters/9 Ergebnis und Diskussion.tex}
-    \input{chapters/10 Zusammenfassung.tex}
-    \input{chapters/11 Ausblick.tex}
+    \printglossaries
  
 \end{document} 

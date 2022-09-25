@@ -46,17 +46,17 @@
 				"name": "makeglossaries",
 				"command": "makeglossaries",
 				"args": [
-					"BA"
+					"DB"
 				]
 			},
 			{
 				"name": "makeindex",
 				"command": "makeindex",
 				"args": [
-					"-s BA.ist",
-					"-t BA.glg",
-					"-o BA.gls",
-					"BA.glo"
+					"-s DB.ist",
+					"-t DB.glg",
+					"-o DB.gls",
+					"DB.glo"
 				]
 			},
 			{
@@ -69,18 +69,20 @@
 		],
 		"cSpell.language": "en,de-DE",
 		"cSpell.words": [
-			"datengestützte",
-			"Klassifiaktionsverfahren",
-			"Klassifikations",
-			"Machbarkeitsanalyse",
-			"Merkmalsvektor",
-			"nachtrainiert",
-			"unüberwachtem",
-			"unüberwachtes",
-			"Verteilnetz",
-			"vorklassifiziert",
-			"Vorklassifizierte",
-			"vorklassifizierten"
-		]
+            "Auslagerungsprozesse",
+            "datengestützte",
+            "Klassifiaktionsverfahren",
+            "Klassifikations",
+            "Machbarkeitsanalyse",
+            "Merkmalsvektor",
+            "nachtrainiert",
+            "unüberwachtem",
+            "unüberwachtes",
+            "Verteilnetz",
+            "vorklassifiziert",
+            "Vorklassifizierte",
+            "vorklassifizierten",
+            "zuordbaren"
+        ]
 	}
 }
