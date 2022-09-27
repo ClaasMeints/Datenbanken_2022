@@ -13,4 +13,74 @@ Die \gls{1M} zwischen \textit{product} und \textit{product\_class} kann unverän
 
 \section{Nachweis der Normalformen}\label{sec:Nachweis der Normalformen}
 
-- Produkt Abhängigkeiten ean
+Um eine Reihe von häufig auftretenden Modellierungsfehlern wie Redundanzen zu vermeiden und Anomalien im Betrieb zu verhindern wird im nächsten Schritt das Datenbankmodell normalisiert. Im Zuge dieser Normalisierung wird das Modell auf die Einhaltung der ersten drei Normalformen hin überprüft und gegebenenfalls angepasst.\\ Um die Einhaltung der \glsxtrfull{1NF} zu prüfen, müssen die Attribute aller Tabellen betrachtet werden. Es ist zu prüfen, ob diese atomar sind, also sich nicht weiter zerlegen lassen. In Tabelle~\ref{tab:2.1} sind alles Attribute, mit Ausnahme von Fremdschlüsseln dargestellt. Für alle Attribute außer den beiden Bilder \textit{class\_image} und \textit{category\_icon} ist anhand der Beispiele ersichtlich, dass diese atomar sind. Bei den Bilddaten handelt es sich um listenwertige Attribute, da diese aber nicht separat voneinander verwendet werden sondern ein einzelnes Bild repräsentieren, liegt dennoch kein verstoß gegen die \glsxtrshort{1NF} vor. Da für keines der Attribute des Schemas ein Verstoß gegen die \glsxtrshort{1NF} vorliegt, erfüllen auch alle Tabellen die \glsxtrshort{1NF}.\\ Für den Nachweis der \glsxtrfull{2NF} darf kein Attribut einer Tabelle bereits von einem Teil des zusammengesetzten Primärschlüssels abhängig sein. Die \glsxtrshort{2NF} ist also für alle Tabellen mit einfachem Primärschlüssel trivialerweise erfüllt. Damit ist der Nachweis für \textit{fridge\_user\_device\_relation}, \textit{device\_content}, \textit{unit\_conversion}, \textit{required\_content} und \textit{shopping\_list} zu erbringen. Da \textit{fridge\_user\_device\_relation} außer dem zusammengesetzten Primärschlüssel keine weiteren Attribute enthält, ist auch hier die \glsxtrshort{2NF} trivialerweise erfüllt.
+\begin{table}
+    \centering
+    \begin{tabular}{l|l|l|c}
+        Tabelle & Attributname & Beispielwert & atomar \\
+        \hline
+        fridge\_user      & login                 & "claas"                        & \ding{51} \\
+        fridge\_user      & password              & "\$2a\$12\$C16E0aHgerPbr..."   & \ding{51} \\
+        device            & device\_id            & 1                              & \ding{51} \\
+        device            & device\_name          & "Kühlschrank"                  & \ding{51} \\
+        device\_content   & filled\_in            & 2022-09-23 12:22:03.142+00     & \ding{51} \\
+        device\_content   & opened                & 2022-09-23 12:22:03.142+00     & \ding{51} \\
+        device\_content   & dropped\_out          & 2022-09-23 12:22:03.142+00     & \ding{51} \\
+        device\_content   & percentage\_left      & 100                            & \ding{51} \\
+        product           & product\_id           & 1                              & \ding{51} \\
+        product           & ean                   & 4004980806405                  & \ding{51} \\
+        product\_class    & class\_id             & 1                              & \ding{51} \\
+        product\_class    & class\_name           & ''Erdnüsse"                    & \ding{51} \\
+        product\_class    & class\_image          & "253, 80, 78, 10, 40, 43, ..." & \ding{55} \\
+        product\_class    & storage\_life\_opened & 7                              & \ding{51} \\
+        product\_category & category\_id          & 1                              & \ding{51} \\
+        product\_category & category\_name        & "Nüsse"                        & \ding{51} \\
+        product\_category & category\_icon        & "253, 80, 78, 10, 40, 43, ..." & \ding{55} \\
+        unit              & unit\_id              & 1                              & \ding{51} \\
+        unit              & unit\_symbol          & "g"                            & \ding{51} \\
+        unit              & unit\_name            & "Gramm"                        & \ding{51} \\
+        unit\_conversion  & factor                & 1000                           & \ding{51} \\
+        required\_content & quantity              & 1                              & \ding{51} \\
+        shopping\_list    & quantity              & 1                              & \ding{51} \\
+    \end{tabular}
+    \caption{Erste Normalform der Attribute}
+    \label{tab:2.1}
+\end{table}
+Die Tabelle \textit{device\_content} enthält neben dem Primärschlüssel Eigenschaften, die einem Konkreten Lebensmittel zugeordnet werden. Diese sind nicht von der \textit{device\_id} abhängig, da ein Gerät unterschiedliche Lebensmittel enthalten kann. Auch von \textit{filled\_in}-Datum sind diese Attribute unabhängig, da in unterschiedliche Geräten unterschiedliche Lebensmittel zum gleichen Zeitpunkt (gleiche Millisekunde) hineingelegt werden können.\\ Auch für \textit{unit\_conversion} ist die \glsxtrshort{2NF} erfüllt, da Umrechnungsfaktor zwischen zwei Einheiten nicht nur von einer der Einheiten abhängig sein kann. Für \textit{required\_content} und \textit{shopping\_list} ist jeweils die Menge von der Produktklasse unabhängig, da unterschiedliche Geräte bzw. Benutzer:innen unterschiedlich viel einer Produktklasse voraussetzen bzw. einkaufen können. Auch umgekehrt gilt, dass Benutzer:innen bzw. Geräte von unterschiedlichen Produktklassen unterschiedliche Mengen einkaufen bzw. voraussetzen können, die \textit{quantity} als voll vom zusammengesetzten Primärschlüssel abhängt. Die \glsxtrshort{2NF} ist also für alle Tabellen erfüllt.\\ Damit auch die \glsxtrfull{3NF} erfüllt ist, müssen zusätzlich zur \glsxtrshort{2NF} alle Determinanten Schlüsselkandidaten sein. Für alle Tabellen in denen es keine Abhängigkeiten von Attributen gibt, die nicht Teil des Primärschlüssels sind, ist die \glsxtrshort{3NF} trivialerweise erfüllt.\\ Im Fall der Tabelle \textit{product} sind viel der im Konzeptionellen Schema enthaltenen Attribut von der \glsxtrshort{EAN} abhängig. Da diese kein Primärschlüsselkandidat ist, wurden die Attribute aus dem Physischen Schema entfernt. Die Daten können allerdings durch eine externe \glsxtrshort{API} abgerufen werden und müssen deshalb nicht in einer separaten Tabelle vorgehalten werden.\\ Bei den Tabellen \textit{product\_class}, \textit{product\_category} und \textit{unit} gäbe es jeweils eine Abhängigkeit anderer Attribute vom Namen, falls dieser eindeutig ist. Da in jedem Fall mehrere Entitäten mit dem gleichen Namen ausdrücklich erlaubt sind, ist dies nicht der Fall.\\ In der Tabelle \textit{unit\_conversion} ist jede Kombination aus zwei Attributen Primärschlüsselkandidat, es kann also keine Determinanten geben, die keine Primärschlüsselkandidaten sind. Die \glsxtrshort{3NF} ist also für alle Tabellen erfüllt und die Normalisierung des Datenbankenmodells ist vollständig.
+
+\section{Domänen und Standardwerte}\label{sec:Domänen und Standardwerte}
+
+Im Letzten Schritt der Model der Datenbank werden die Domänen und weitere Eigenschaften der Attribute festgelegt. In Tabelle~\ref{tab:2.2} sind für alle Attribute ausgenommen der Fremdschlüssel die Eigenschaften dargestellt. Aus Platzgründen wurden einige Angaben gekürzt: in der Spalte Null ist angegeben, ob ein Attribut den Wert Null annehmen darf, Attribute mit einem Haken bei Inkrement werden automatisch inkrementiert, VAR ist gekürzt für VARYING und alle TIMESTAMPs sind TIMESTAMPs WITH TIME ZONE.\\
+
+\begin{table}
+    \centering
+    \begin{tabular}{l|l|c|c|l}
+        Attribut & Domäne & Null & Inkrement & Standardwert \\
+        \hline
+        login                 &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
+        password              &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
+        device\_id            &  INTEGER             & \ding{55} & \ding{51} & - \\
+        device\_name          &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & "Unbenanntes Gerät" \\
+        filled\_in            &  TIMESTAMP           & \ding{55} & \ding{55} & CURRENT\_TIMESTAMP  \\
+        opened                &  TIMESTAMP           & \ding{51} & \ding{55} & - \\
+        dropped\_out          &  TIMESTAMP           & \ding{51} & \ding{55} & - \\
+        percentage\_left      &  INTEGER             & \ding{55} & \ding{55} & 100 \\
+        product\_id           &  INTEGER             & \ding{55} & \ding{51} & - \\
+        ean                   &  CHARACTER VAR(255)  & \ding{51} & \ding{55} & - \\
+        class\_id             &  INTEGER             & \ding{55} & \ding{51} & - \\
+        class\_name           &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
+        class\_image          &  BYTEA               & \ding{51} & \ding{55} & - \\
+        storage\_life\_opened &  INTEGER             & \ding{51} & \ding{55} & - \\
+        category\_id          &  INTEGER             & \ding{55} & \ding{51} & - \\
+        category\_name        &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
+        category\_icon        &  BYTEA               & \ding{51} & \ding{55} & - \\
+        unit\_id              &  INTEGER             & \ding{55} & \ding{51} & - \\
+        unit\_symbol          &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
+        unit\_name            &  CHARACTER VAR(255)  & \ding{51} & \ding{55} & - \\
+        factor                &  NUMERIC             & \ding{55} & \ding{55} & 1 \\
+        quantity              &  NUMERIC             & \ding{55} & \ding{55} & 1 \\
+        quantity              &  NUMERIC             & \ding{55} & \ding{55} & 1 \\
+    \end{tabular}
+    \caption{Domänen und Standardwerte der Attribute}
+    \label{tab:2.2}
+\end{table}
