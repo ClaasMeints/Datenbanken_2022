@@ -50,37 +50,53 @@ Die Tabelle \textit{device\_content} enthält neben dem Primärschlüssel Eigens
 
 \section{Domänen und Standardwerte}\label{sec:Domänen und Standardwerte}
 
-Im Letzten Schritt der Model der Datenbank werden die Domänen und weitere Eigenschaften der Attribute festgelegt. In Tabelle~\ref{tab:2.2} sind für alle Attribute ausgenommen der Fremdschlüssel die Eigenschaften dargestellt. Aus Platzgründen wurden einige Angaben gekürzt: in der Spalte Null ist angegeben, ob ein Attribut den Wert Null annehmen darf, Attribute mit einem Haken bei Inkrement werden automatisch inkrementiert, VAR ist gekürzt für VARYING und alle TIMESTAMPs sind TIMESTAMPs WITH TIME ZONE.\\
+Im Letzten Schritt der Model der Datenbank werden die Domänen und weitere Eigenschaften der Attribute festgelegt. In Tabelle~\ref{tab:2.2} sind für alle Attribute ausgenommen der Fremdschlüssel die Domänen dargestellt. Außerdem ist angegeben, ob diese den Wert \textit{Null} haben dürfen und ob diese automatisch Inkrementiert werden. Einige der Attribute werden zusätzlich mit einem Standardwert versehen, welcher immer verwendet wird, wenn kein Wert für das Attribut angegeben ist. Für alle Attribut mit Standardwert sind diese in Tabelle~\ref{tab:2.3} dargestellt. Da es zwei Attribute mit dem Namen \textit{quantity} gibt sind diese jeweils mit einer Nummer versehen. Bei (1) handelt es sich um das Attribut aus der Tabelle \textit{required\_content}, bei (2) um das aus \textit{shopping\_list}.
 
 \begin{table}
     \centering
-    \begin{tabular}{l|l|c|c|l}
-        Attribut & Domäne & Null & Inkrement & Standardwert \\
+    \begin{tabular}{l|l|c|c}
+        Attribut & Domäne & Nullbar & Auto Inkrement \\
         \hline
-        login                 &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
-        password              &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
-        device\_id            &  INTEGER             & \ding{55} & \ding{51} & - \\
-        device\_name          &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & "Unbenanntes Gerät" \\
-        filled\_in            &  TIMESTAMP           & \ding{55} & \ding{55} & CURRENT\_TIMESTAMP  \\
-        opened                &  TIMESTAMP           & \ding{51} & \ding{55} & - \\
-        dropped\_out          &  TIMESTAMP           & \ding{51} & \ding{55} & - \\
-        percentage\_left      &  INTEGER             & \ding{55} & \ding{55} & 100 \\
-        product\_id           &  INTEGER             & \ding{55} & \ding{51} & - \\
-        ean                   &  CHARACTER VAR(255)  & \ding{51} & \ding{55} & - \\
-        class\_id             &  INTEGER             & \ding{55} & \ding{51} & - \\
-        class\_name           &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
-        class\_image          &  BYTEA               & \ding{51} & \ding{55} & - \\
-        storage\_life\_opened &  INTEGER             & \ding{51} & \ding{55} & - \\
-        category\_id          &  INTEGER             & \ding{55} & \ding{51} & - \\
-        category\_name        &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
-        category\_icon        &  BYTEA               & \ding{51} & \ding{55} & - \\
-        unit\_id              &  INTEGER             & \ding{55} & \ding{51} & - \\
-        unit\_symbol          &  CHARACTER VAR(255)  & \ding{55} & \ding{55} & - \\
-        unit\_name            &  CHARACTER VAR(255)  & \ding{51} & \ding{55} & - \\
-        factor                &  NUMERIC             & \ding{55} & \ding{55} & 1 \\
-        quantity              &  NUMERIC             & \ding{55} & \ding{55} & 1 \\
-        quantity              &  NUMERIC             & \ding{55} & \ding{55} & 1 \\
+        login                 &  CHARACTER VARYING(255)  & \ding{55} & \ding{55} \\
+        password              &  CHARACTER VARYING(255)  & \ding{55} & \ding{55} \\
+        device\_id            &  INTEGER                 & \ding{55} & \ding{51} \\
+        device\_name          &  CHARACTER VARYING(255)  & \ding{55} & \ding{55} \\
+        filled\_in            &  TIMESTAMP WITH TIMEZONE & \ding{55} & \ding{55} \\
+        opened                &  TIMESTAMP WITH TIMEZONE & \ding{51} & \ding{55} \\
+        dropped\_out          &  TIMESTAMP WITH TIMEZONE & \ding{51} & \ding{55} \\
+        percentage\_left      &  INTEGER                 & \ding{55} & \ding{55} \\
+        product\_id           &  INTEGER                 & \ding{55} & \ding{51} \\
+        ean                   &  CHARACTER VARYING(255)  & \ding{51} & \ding{55} \\
+        class\_id             &  INTEGER                 & \ding{55} & \ding{51} \\
+        class\_name           &  CHARACTER VARYING(255)  & \ding{55} & \ding{55} \\
+        class\_image          &  BYTEA                   & \ding{51} & \ding{55} \\
+        storage\_life\_opened &  INTEGER                 & \ding{51} & \ding{55} \\
+        category\_id          &  INTEGER                 & \ding{55} & \ding{51} \\
+        category\_name        &  CHARACTER VARYING(255)  & \ding{55} & \ding{55} \\
+        category\_icon        &  BYTEA                   & \ding{51} & \ding{55} \\
+        unit\_id              &  INTEGER                 & \ding{55} & \ding{51} \\
+        unit\_symbol          &  CHARACTER VARYING(255)  & \ding{55} & \ding{55} \\
+        unit\_name            &  CHARACTER VARYING(255)  & \ding{51} & \ding{55} \\
+        factor                &  NUMERIC                 & \ding{55} & \ding{55} \\
+        quantity(1)           &  NUMERIC                 & \ding{55} & \ding{55} \\
+        quantity(2)           &  NUMERIC                 & \ding{55} & \ding{55} \\
     \end{tabular}
-    \caption{Domänen und Standardwerte der Attribute}
+    \caption{Domänen der Attribute}
     \label{tab:2.2}
+\end{table}
+
+\begin{table}
+    \centering
+    \begin{tabular}{l|l}
+        Attribut & Standardwert \\
+        \hline
+        device\_name          & "Unbenanntes Gerät" \\
+        filled\_in            & CURRENT\_TIMESTAMP  \\
+        percentage\_left      & 100                 \\
+        factor                & 1                   \\
+        quantity(1)           & 1                   \\
+        quantity(2)           & 1                   \\
+    \end{tabular}
+    \caption{Standardwerte der Attribute}
+    \label{tab:2.3}
 \end{table}
