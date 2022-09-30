@@ -1,0 +1,6 @@
+[submodule "fridge-backend"]
+	path = fridge-backend
+	url = git@github.com:ClaasMeints/fridge-backend.git
+[submodule "FridgeApp"]
+	path = FridgeApp
+	url = git@github.com:ClaasMeints/FridgeApp.git
